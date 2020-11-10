@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block body %} {% load static %} 
+{% load crispy_forms_tags %}
+
+
+<form method="post">
+  {% csrf_token %}
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-5">{{form.username| as_crispy_field}}</div>
+    <div class="col-5">{{form.email| as_crispy_field}}</div>
+
+
+
+    <div class="col-5">  {{form.first_name| as_crispy_field}}</div>
+    <div class="col-5">{{form.last_name | as_crispy_field}}</div>
+
+
+
+    <div class="col-5">   {{form.password1| as_crispy_field}}</div>
+    <div class="col-5">  {{form.password2 | as_crispy_field}}</div>
+
+
+
+  </div>
+    <button type="submit" class="btn btn-primary">Signup</button>
+  </div>
+  
+
+
+
+</form>
+
+{% endblock body %}

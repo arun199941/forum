@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <title>Search:{{query}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'result.css' %}" />
+    <link
+      href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css"
+      rel="stylesheet"
+      media="screen"
+    />
+    <link
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+  </head>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #222831;
+    }
+    body::-webkit-scrollbar {
+      width: 0.25rem;
+    }
+
+    body::-webkit-scrollbar-track {
+      background: #1e1e24;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background: #6649b8;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <hgroup class="mb20">
+        <h1>Search Results</h1>
+        <h2 class="lead">
+          <strong class="text-danger">3</strong> results were found for the
+          search for <strong class="text-danger">{{query}}</strong>
+        </h2>
+      </hgroup>
+
+      <section class="col-xs-12 col-sm-6 col-md-12">
+        {% if comms|length < 1 %}
+        <p>No search Results</p>
+        <h5>Your search -{{query}} did not match any tribes.</h5>
+        <br />
+        <strong>Please try</strong>
+        <li>Make sure that all words are spelled correctly.</li>
+        <li>Try different keywords.</li>
+        <li>Try more general keywords.</li>
+        <a
+          href="/"
+          class="btn btn-primary"
+          style="margn: 10px !important; border-radius: 4px"
+          >Return Home</a
+        >
+
+        {% else %} {% for comm in comms %}
+        <article class="search-result row">
+           {% if comm.cover_image_url %}
+          <div class="col-xs-12 col-sm-12 col-md-3">
+       
+              <a
+                href="/tribes/{{comm.name}}"
+                title="{{comm.name}}"
+                class="thumbnail"
+                ><img src="{{comm.cover_image_url}}" alt="{{comm.name}}"
+              /></a>
+          </div>
+          {% endif %}
+          <div class="col-xs-12 col-sm-12 col-md-2">
+            <ul class="meta-search">
+              <li>
+                <i class="glyphicon glyphicon-calendar"></i>
+                <span>{{comm.date_created}}</span>
+              </li>
+
+              <li>
+                <i class="glyphicon glyphicon-tags"></i>
+                <span>{{tribes.anime}}</span>
+              </li>
+              <li>
+                <i class="glyphicon glyphicon-tags"></i>
+                <span>Captains: <strong>{{comm.captains}}</strong></span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-7">
+            <h3>
+              <a href="/community/{{comm.eid}}" title="">{{comm.name}}</a>
+            </h3>
+            <p>{{comm.description}}</p>
+            <span class="plus"
+              ><a href="#" title="Lorem ipsum"
+                ><i class="glyphicon glyphicon-plus"></i></a
+            ></span>
+          </div>
+          <span class="clearfix borda"></span>
+        </article>
+
+        {% endfor %} {%endif%}
+      </section>
+
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </div>
+  </body>
+</html>

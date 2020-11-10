@@ -1,0 +1,25 @@
+.navbar-search {
+  margin: auto;
+
+  align-items: center;
+  position: relative;
+}
+h1,
+h2,
+p,
+label {
+  color: #aaccff;
+}
+
+.search-bar {
+  display: block;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid;
+  box-shadow: none;
+  background-color: #5d0040;
+
+
+  width: 100%;
+  padding: 10px 15px 15px 10px;
+}

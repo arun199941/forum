@@ -1,0 +1,11 @@
+
+
+
+.sidebar {
+    background-color: #2f3542;
+    /* grid-row: 2/6;
+    grid-column: 4/10; */
+    float: right;
+    width: 100%;
+    border-radius: 6px;
+  }

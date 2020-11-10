@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+<title>Profile: {{user}}</title>
+<div class="container bg-dark">
+  <div class="content-section">
+    <div class="media my-3">
+      <img
+        src="{{profile_image.url}}"
+        alt=""
+        width="200px"
+        height="200px"
+        class="rounded float-left mr-2 my-2"
+      />
+      <div class="media-body my-2 ml-2">
+        <h2 class="account-heading">{{user}}</h2>
+        <p class="text-secondary">{{user.email}}</p>
+        <p class="text-secondary">{{phone}}</p>
+        <p class="text-secondary">{{country}}</p>
+        <p class="text-primary">{{about}}</p>
+        <a href="{% url 'update-profile'%}" class="btn btn-outline-light mb-2">Update Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock body %}

@@ -1,0 +1,122 @@
+{% load static %}
+
+{% comment %} <link rel="stylesheet" href="{% static 'comment.css'%}" />
+<div class="container">
+  <div class="comment_block">
+    {% for comment in comments%}
+
+    <div class="new_comment">
+      <!-- build comment -->
+      <ul class="user_comment">
+        <!-- current #{user} avatar -->
+        <div class="user_avatar">
+          <img
+            src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/73.jpg"
+          />
+        </div>
+        <!-- the comment body -->
+        <div class="comment_body bg-dark " style="border-radius: 4px;">
+          <p>{{comment.comment}}</p>
+        </div>
+
+        <!-- comments toolbar -->
+        <div class="comment_toolbar">
+          <!-- inc. date and time -->
+          <div class="comment_details">
+            <ul>
+              <li><i class="fa fa-clock-o"></i> {{comment.date_created}}</li>
+           
+              <li>
+                <i class="fa fa-pencil"></i>
+                <span class="user">{{comment.author}}</span>
+              </li>
+            </ul>
+          </div>
+          <!-- inc. share/reply and love -->
+          <div class="comment_tools">
+            <ul>
+              <li><a href="{% url 'add_reply_to_comment'  pk=post.pk  parent_pk=comment.pk%}"><i class="fa fa-share-alt"></i></a></li>
+              <li><a href="{% url 'add_reply_to_comment'  pk=post.pk  parent_pk=comment.pk%}"><i class="fa fa-reply"></a></i></li>
+              <li><i class="fa fa-heart love"></i></li>
+            </ul>
+          </div>
+        </div>
+      </ul>
+    </div>
+
+	{% if comment.children.count > 0%}
+	{% include "snippets/comment.html" with comments=comment.children.all %}
+	{%endif%}
+
+    {% endfor %}
+  </div>
+</div> {% endcomment %}
+
+
+
+
+
+<!--To Work with icons-->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<div class="container">
+  {% for comment in comments%}
+  <div class="card ">
+	    <div class="card-body bg-dark ">
+
+	        <div class="row">
+        	    <div class="col-md-2">
+        	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+        	        <p class="text-secondary text-center"> {{comment.date_created}}</p>
+        	    </div>
+        	    <div class="col-md-10">
+        	        <p>
+        	            <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{comment.author}}</strong></a>
+        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+
+        	       </p>
+        	       <div class="clearfix"></div>
+        	        <p class="text-left">{{comment.comment}}</p>
+        	        <p>
+        	            <a class="float-right btn btn-outline-primary ml-2" href="{% url 'add_reply_to_comment'  pk=post.pk  parent_pk=comment.pk%}"> <i class="fa fa-reply"></i> Reply</a>
+        	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+        	       </p>
+        	    </div>
+          </div>
+          <br />
+
+          {% if comment.children.count > 0%}
+ 
+          <div class="card card-inner">
+               <div class="card-body">
+                   <div class="row">
+                       <div class="col-md-2">
+                           <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                           <p class="text-secondary text-center">{{comment.date_created}}</p>
+                       </div>
+                       <div class="col-md-10">
+                           <p><a href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{comment.author}}</strong></a></p>
+                           <p class="text-left">{{comment.comment}}</p>
+                           <p>
+                               <a class="float-right btn btn-outline-primary ml-2" href="{% url 'add_reply_to_comment'  pk=post.pk  parent_pk=comment.pk%}">  <i class="fa fa-reply"></i> Reply</a>
+                               <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                          </p>
+                       </div>
+                   </div>
+               </div>
+           </div> 
+ {%endif%}
+
+
+          
+          
+
+	    </div>
+  </div>
+  <br />
+  {%endfor%}
+ 
+</div>

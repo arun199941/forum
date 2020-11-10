@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block body %} {% load static %}
+<link rel="stylesheet" href="{% static 'index.css'%}" />
+<div class="container">
+  <div class="row">
+    <div class="left-column col-lg-7 offset-lg-1">
+      <div class="d-lg-none mb-3">
+        <div class="card m-auto d-flex flex-column p-3">
+          <img
+            src=""
+            class="img-fluid d-block m-auto pb-2"
+            width="72"
+            height="72"
+          />
+          <p class="lead">Welcome to Our Website</p>
+          <p class="m-auto">
+            <a class="btn btn-primary" href="{% url 'post_new' %}"
+              >Create Post</a
+            >
+          </p>
+        </div>
+      </div>
+      <div class="post-list">
+        {%for post in posts %}
+        <div class="post-container">{% include 'snippets/post_list.html'%}</div>
+
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="right-column col-lg-3 d-lg-flex d-none flex-column">
+      <div class="card create-post-bar d-flex flex-column p-3 bg-dark">
+        <img
+          src=""
+          class="img-fluid d-block m-auto pb-2"
+          width="72"
+          height="72"
+        />
+        <p class="lead">Welcome to Our Site Weeb World</p>
+        <p class="m-auto">
+          <a class="btn btn-primary" href="{% url 'post_new'%}">Create Post</a>
+          <a class="btn btn-secondary" href="{% url 'profile'%}">Profile</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body%}

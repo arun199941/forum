@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+{% load static%}
+
+<link rel="stylesheet" href="{%static 'signin.css' %}" />
+<form method="post" id="app" @submit="checkForm">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <h1 >Signin</h1>
+    <input class="form-input" v-model="username" type="text" name="username" />
+    <input
+      class="form-input"
+      v-model="password"
+      type="password"
+      name="password"
+    />
+    <br />
+
+    <button
+      type="submit"
+      class="btn btn-outline"
+      style="
+        width: 20% !important;
+        border-radius: 20px;
+        position: relative;
+        margin-left: 20px;
+        color: #00d2d3;
+        background-color: #1f4068;
+      "
+    >
+      Login
+    </button>
+
+
+
+  </div>
+</form>
+
+{% endblock %}

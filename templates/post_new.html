@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block body%}
+
+
+
+
+<form  method="post">
+  {% csrf_token %}
+  <div class="container">
+  <div class="row">
+  <div class="col-5">
+  {{form.title | as_crispy_field}}
+  </div>
+  <div class="col-5"> {{form.url | as_crispy_field}}</div>
+  </div>
+    {{form.description | as_crispy_field}}
+    {{form.communities| as_crispy_field}}
+   <button type="submit" name="button" class="btn btn-primary">Post</button>
+  </div>
+ </form>
+{% endblock body%}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'add_comment.css'%}" />
+<section>
+<div class="add_comment_block">
+  <!-- used by #{user} to create a new comment -->
+  <div class="create_new_comment">
+    <!-- current #{user} avatar -->
+    <center>
+    <div class="user_avatar m-auto">
+      <img
+        src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg"
+      />
+    </div>
+    </center>
+    <!-- the input field -->
+    <center>
+    <form method="post">
+  
+    {% csrf_token %}
+    <div class="container">
+        {{form|crispy}}
+    </div>
+    
+
+
+
+    <button type="submit " class="btn btn-primary my-2">Add Comment</button>
+    </form>
+    </center>
+    
+  </div>
+  </div>
+</section>
+
+{% endblock body %}
+

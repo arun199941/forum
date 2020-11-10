@@ -1,0 +1,9 @@
+{% if post.community.count %}
+
+{% for comm in post.community.all  %}
+    <small class="text-muted"><a href="{% url 'community_detail' pk=comm.pk%}">{{comm}} Community</a></small>
+{% endfor %}
+
+{% else %}
+
+{% endif %}

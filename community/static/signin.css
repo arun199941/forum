@@ -1,0 +1,14 @@
+.form-input {
+  width: 50%;
+  border-radius: 12px;
+  margin: 20px;
+  background-color: #515585;
+  border: none;
+  height: 40px;
+  outline: none;
+}
+
+.form-group {
+  margin-left: 15%;
+  margin-top: 15%;
+}

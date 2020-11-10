@@ -1,0 +1,64 @@
+{% extends 'base.html'%}
+
+{% block body %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'post_detail.css'%}">
+
+<div class="container">
+  <div class="row">
+    <div class="card m-auto bg-dark">
+      <a href="#">
+        <img src="" class="card-img-top" alt="" />
+      </a>
+      <div class="card-body mt-2 mb-2">
+
+          <h2 class="card-title">{{post.title}}</h2>
+
+        <p class="card-text">{{post.description|safe}}</p>
+
+      </div>
+      <div class="card-footer text-muted">
+        Posted on {{post.date_created}}
+      </div>
+      {% if user.is_authenticated %}
+          <div class="feedback-icons">
+         {% include "snippets/vote.html" with el=post%}
+       
+        
+      </div>
+      {% endif %}
+    
+    </div>
+  </div>
+</div>
+
+<div class="comment-section" style="margin-top:20px; ">
+  <center><h4>Comments:</h4></center>
+  {% if user.is_authenticated %}
+    <center><a href="{% url 'add_comment' pk=post.pk %}" class="btn btn-primary">Add Your Comment</a><center>
+
+
+  
+  {% endif %}
+
+
+
+  {% if post.no_comment > 0 %}
+    {% include 'snippets/comment.html' with comments=post.children.all%}
+  {% else %}
+    <h5>Be the first one to Comment</h5>
+
+  {% endif %}
+  
+
+
+
+
+
+
+</div>
+
+
+<br />
+{% endblock %}
